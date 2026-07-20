@@ -1,67 +1,69 @@
-name: Deploy Cakelet Documentation
+name: Build documentation
 
 on:
   push:
-    branches:
-      - master
-
+    branches: ["master"]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
   id-token: write
+  pages: write
 
 env:
-  INSTANCE: "Writerside/csd"
-  DOCKER_VERSION: "latest"
+  INSTANCE: 'Writerside/csd'
+  DOCKER_VERSION: 'latest'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     outputs:
-      artifact: ${{ steps.ids.outputs.artifact }}
-
+      algolia_artifact: ${{ steps.define-ids.outputs.algolia_artifact }}
+      artifact: ${{ steps.define-ids.outputs.artifact }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Compute artifact name
-        id: ids
-        shell: bash
+      - name: Define instance id and artifacts
+        id: define-ids
         run: |
-          INSTANCE_ID="${INSTANCE#*/}"
-          INSTANCE_UPPER=$(echo "$INSTANCE_ID" | tr '[:lower:]' '[:upper:]')
-          ARTIFACT="webHelp${INSTANCE_UPPER}2-all.zip"
+          INSTANCE=${INSTANCE#*/}
+          INSTANCE_ID_UPPER=$(echo "$INSTANCE" | tr '[:lower:]' '[:upper:]')
+          ARTIFACT="webHelp${INSTANCE_ID_UPPER}2-all.zip"
+          ALGOLIA_ARTIFACT="algolia-indexes-${INSTANCE_ID_UPPER}.zip"
 
-          echo "artifact=$ARTIFACT" >> "$GITHUB_OUTPUT"
+          # Print the values
+          echo "INSTANCE_ID_UPPER: $INSTANCE_ID_UPPER"
+          echo "ARTIFACT: $ARTIFACT"
+          echo "ALGOLIA_ARTIFACT: $ALGOLIA_ARTIFACT"
 
-      - name: Build Writerside documentation
+          # Set the environment variables and outputs
+          echo "INSTANCE_ID_UPPER=$INSTANCE_ID_UPPER" >> $GITHUB_ENV
+          echo "ARTIFACT=$ARTIFACT" >> $GITHUB_ENV
+          echo "ALGOLIA_ARTIFACT=$ALGOLIA_ARTIFACT" >> $GITHUB_ENV
+          echo "artifact=$ARTIFACT" >> $GITHUB_OUTPUT
+          echo "algolia_artifact=$ALGOLIA_ARTIFACT" >> $GITHUB_OUTPUT
+
+      - name: Build docs using Writerside Docker builder
         uses: JetBrains/writerside-github-action@v4
         with:
           instance: ${{ env.INSTANCE }}
           docker-version: ${{ env.DOCKER_VERSION }}
-          artifact: ${{ steps.ids.outputs.artifact }}
 
-      - name: Upload documentation artifacts
+      - name: Save artifact with build results
         uses: actions/upload-artifact@v4
         with:
           name: docs
-          path: artifacts/*
+          path: |
+            artifacts/${{ steps.define-ids.outputs.artifact }}
+            artifacts/report.json
+            artifacts/${{ steps.define-ids.outputs.algolia_artifact }}
           retention-days: 7
-
-  deploy:
+  test:
     needs: build
-
     runs-on: ubuntu-latest
-
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -69,17 +71,33 @@ jobs:
           name: docs
           path: artifacts
 
-      - name: Extract website
-        run: |
-          unzip -qq "artifacts/${{ needs.build.outputs.artifact }}" -d site
+      - name: Test documentation
+        uses: JetBrains/writerside-checker-action@v1
+        with:
+          instance: ${{ env.INSTANCE }}
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: [build, test]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: docs
+          path: artifacts
 
-      - name: Configure Pages
-        uses: actions/configure-pages@v5
+      - name: Unzip artifact
+        run: unzip -O UTF-8 -qq "artifacts/${{ needs.build.outputs.artifact }}" -d dir
 
-      - name: Upload Pages artifact
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Package and upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: dir
 
       - name: Deploy to GitHub Pages
         id: deployment
