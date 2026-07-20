@@ -6,5 +6,5 @@ This repository contains the technical documentation and architectural decision 
 ## Tabla de repositorios
 | Repositorio         | Accion     |
 | ------------------- | ---------- |
-| Cakelet API         | [ver](https://github.com/Ismael-Romero/cakelet-suite)|
+| Cakelet API         | [ver](https://github.com/Ismael-Romero/cakelet-api)|
 | Cakelet Desktop     | [ver](https://github.com/Ismael-Romero/cakelet-desktop)|
