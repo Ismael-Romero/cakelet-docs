@@ -7,7 +7,14 @@
     <build-profile instance="csd">
         <variables>
             <noindex-content>true</noindex-content>
+            <primary-color>strawberry</primary-color>
+            <showDownloadButton>true</showDownloadButton>
+            <color-preset>contrast</color-preset>
         </variables>
+        <footer>
+            <social type="github" href="https://github.com/Ismael-Romero"/>
+            <social type="linkedin" href="https://www.linkedin.com/in/ismael-romero-404"/>
+        </footer>
     </build-profile>
 
 </buildprofiles>

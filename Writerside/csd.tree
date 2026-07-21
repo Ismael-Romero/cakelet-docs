@@ -3,8 +3,13 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="csd"
-                 name="Cakelet Suite Documentation"
+                 name="Cakelet"
                  start-page="starter-topic.md">
 
     <toc-element topic="starter-topic.md"/>
+    <toc-element topic="Architecture.md"/>
+    <toc-element topic="Domains.md"/>
+    <toc-element topic="Components.md"/>
+    <toc-element topic="Business-Flows.md"/>
+    <toc-element topic="Decisions-ADR.md"/>
 </instance-profile>
