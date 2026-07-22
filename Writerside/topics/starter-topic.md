@@ -1,110 +1,122 @@
 # Get Started
 
 <img src="cuper.png" alt="cuper by cakelet" width="120" height="120"/>
+
 ## What is Cakelet?
+
+> **Software for everything and nothing at all.**
 
 Cakelet was born from a simple idea: stop starting software projects from scratch.
 
-Like many developers, I spent years collecting ideas for SaaS products, business management systems,
-internal tools, and applications for different industries. Yet every project eventually ran into the same problem:
-before writing a single line of code, dozens of architectural, technological, and organizational decisions had to be made.
+Like many developers, I spent years collecting ideas for SaaS products, business systems, 
+internal tools, and applications for different industries. Yet every project eventually ran into the same obstacle:
+before writing a single line of code, dozens of architectural, technological, and organizational decisions had already accumulated.
 
 Cakelet is my answer to that problem.
 
-Rather than chasing the next big idea, the goal is to build a solid foundation 
-that makes it possible to turn an idea into a well-structured software project from day one.
+Rather than chasing the next big product, Cakelet focuses on building the 
+foundation that allows ideas to become well-structured software projects from day one.
+
+The phrase **"software for everything and nothing at all"** reflects that philosophy.
+
+It is **for everything** because the same architecture can become the foundation of many different business applications.
+
+It is **for nothing** because, by itself, Cakelet does not solve a specific business problem. 
+It provides the architecture—the business solution is built on top of it.
 
 > If you are a recruiter visiting this repository, welcome. This project represents how I approach software architecture, 
-documentation, and long-term system design. I hope you find it interesting, and I'd be happy to discuss it during an interview.
+> documentation, and long-term system design. I hope you find it interesting, and I'd be happy to discuss it during an interview.
+
+---
 
 ## What is Cakelet, really?
 
-Cakelet is an architectural foundation for building business applications.
+Cakelet is a **reference architecture** for building business applications.
 
-It is not a finished product. Instead, it brings together a predefined architecture, 
-documented technical decisions, and design guidelines that serve as the starting point for new software projects.
+It is not a finished product. Instead, it documents architectural decisions, design principles, 
+and implementation guidelines that serve as the starting point for real software projects.
 
-This repository contains the documentation behind those decisions and serves as the 
-central reference for the different repositories that make up the Cakelet project.
+The project is organized into multiple repositories, each implementing a different part of the architecture.
 
-| Repository         | Link     |
-| ------------------- | ---------- |
-| Cakelet Server - Multi-protocol Application Server powering the Cakelet platform.   | [view](https://github.com/Ismael-Romero/cakelet-server)|
-| Cakelet Desktop - Cross-platform desktop application built with Tauri and React.    | [view](https://github.com/Ismael-Romero/cakelet-desktop)|
+| Repository | Link |
+|------------|------|
+| Cakelet Server — Multi-protocol Application Server powering the Cakelet platform. | [view](https://github.com/Ismael-Romero/cakelet-server) |
+| Cakelet Desktop — Cross-platform desktop application built with Tauri and React. | [view](https://github.com/Ismael-Romero/cakelet-desktop) |
 
+The goal is simple: avoid making the same architectural decisions every time a new project begins.
 
-The primary goal is to avoid starting every application from a blank page. 
-Instead of repeatedly defining the architecture, project structure, and technical conventions,
-Cakelet provides a pre-designed and validated foundation on which business logic can be built.
+Instead of repeatedly defining project structure, communication patterns, conventions, 
+and infrastructure, Cakelet provides a documented and validated architectural baseline
+that developers can extend according to their own business domain.
 
-The chosen architectural style is a **Client-Server**, whose motivations and design 
-decisions are documented in the Architecture section.
+Its core architectural style is **Client-Server**, organized using an **N-tier** 
+approach and centered around a **Multi-protocol Application Server** capable of serving multiple 
+client applications through different communication mechanisms.
 
+The motivations behind these decisions are described throughout the Architecture section.
+
+---
 
 ## What Cakelet is not
 
-Cakelet should not be confused with a framework, a platform, or a community-driven project.
+Cakelet is **not** a framework.
 
-It is not intended to compete with existing solutions or provide an ecosystem of tools,
-extensions, or ready-to-use configurations.
+It is **not** a platform.
 
-As Cakelet is used in real-world projects, I may eventually develop utilities or tooling based on this architecture.
-If that happens, those tools will simply be a natural outcome of using Cakelet 
-in practice—not an attempt to turn it into a framework or an ecosystem.
+It is **not** a community-driven ecosystem.
 
-A framework provides reusable components, conventions, and tooling designed to
-solve common problems across many different projects.
+Frameworks provide reusable components and conventions for solving recurring programming problems.
 
-Cakelet has a different purpose: to serve as the starting point of a real software project.
+Cakelet serves a different purpose: it captures architectural decisions before a real project begins.
 
-A good way to think about it is to imagine a company replacing a legacy system.
-Before any implementation begins, teams typically spend weeks—or even months—defining 
-architectural standards, documenting technical decisions, and establishing development conventions.
+A useful analogy is a company replacing a legacy system. Before development starts,
+weeks—or even months—are often spent defining architecture, standards, conventions, 
+deployment strategies, and technical guidelines.
 
-Cakelet aims to condense that initial effort into a predefined architectural foundation, 
-allowing the team to focus from day one on documenting project-specific decisions
-and implementing business logic.
+Cakelet condenses that work into a reusable reference architecture so new projects 
+can begin with an established technical foundation instead of a blank page.
 
-Likewise, it is also intended for developers who want to start serious software 
-projects without redesigning the architecture every time.
+As Cakelet evolves, I may develop utilities or tools that support this architecture. 
+If that happens, they will simply be a consequence of using Cakelet in real projects—not 
+an attempt to turn it into a framework.
+
+---
 
 ## Why invest so much effort in Cakelet?
 
 The short answer is simple: learning.
 
-Cakelet was created as a laboratory for developing skills that go beyond writing code, 
-including software architecture, system design, technical documentation, project management,
-and architectural decision-making.
+Cakelet is my laboratory for exploring software architecture, distributed systems, 
+system design, technical documentation, project management, and architectural decision-making.
 
-It also serves as a place where I can experiment with architectural patterns, 
-evaluate technologies, and continuously improve a reusable foundation 
-for my personal and professional projects.
+It is where I experiment with patterns, evaluate technologies, and continuously
+refine an architecture that I can confidently reuse in future projects.
 
-There is also a philosophy behind the project: good software architecture
-should not only solve today's problems—it should prepare the system for tomorrow's.
+The philosophy behind Cakelet is straightforward:
 
-From the very beginning, Cakelet encourages questions such as:
+Good software architecture should not only solve today's problems—it should also reduce the cost of solving tomorrow's.
+
+Every architectural decision attempts to answer questions such as:
 
 - Will the system scale vertically or horizontally?
-- How will today's decisions affect maintainability five years from now?
-- How easy will it be to introduce new modules?
-- What would be the cost of migrating to a distributed architecture if it ever became necessary?
+- How maintainable will it be five years from now?
+- How easily can new modules be introduced?
+- How expensive would a migration toward a distributed deployment become?
 
-Answering these questions early is usually far less expensive than redesigning an 
-entire system after growth has already exposed architectural limitations.
+Answering these questions before writing business logic is usually far less expensive than redesigning an entire system later.
 
-Finally, although Cakelet was created primarily as a learning project and as the 
-foundation for my own software, its license allows anyone—individuals or organizations—to adopt, 
-modify, and adapt it to their own needs.
+Although Cakelet primarily exists as a learning project and the foundation for 
+my own software, its license allows anyone to adopt, modify, and adapt the architecture if they find it useful.
 
-If others find the architectural approach valuable, that will be a welcome outcome, 
-even though it has never been the project's primary objective.
+If someone builds something great with it, I will consider that one of the project's greatest successes.
 
+---
 
-## Resources of interest
-This section contains books, articles, videos, courses, and other resources that 
-I have found valuable while learning about software architecture, system design, and related topics.
+## Resources of Interest
 
-The list is not intended to be a definitive reference or a curated recommendation. 
-Instead, it serves as a record of the materials that have influenced the architectural 
-decisions behind Cakelet and continue to shape its evolution.
+Cakelet is also a continuous learning project.
+
+This section contains books, articles, videos, courses, and other resources that have
+influenced both my understanding of software architecture and the evolution of Cakelet itself.
+
+Rather than serving as a curated recommendation list, it documents the material that has shaped the architectural decisions found throughout this project.
