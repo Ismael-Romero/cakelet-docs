@@ -29,7 +29,7 @@ central reference for the different repositories that make up the Cakelet projec
 
 | Repository         | Link     |
 | ------------------- | ---------- |
-| Cakelet API - Backend API for the Cakelet platform.         | [view](https://github.com/Ismael-Romero/cakelet-api)|
+| Cakelet Server - Multi-protocol Application Server powering the Cakelet platform.   | [view](https://github.com/Ismael-Romero/cakelet-server)|
 | Cakelet Desktop - Cross-platform desktop application built with Tauri and React.    | [view](https://github.com/Ismael-Romero/cakelet-desktop)|
 
 
