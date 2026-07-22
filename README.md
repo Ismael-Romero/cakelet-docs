@@ -6,5 +6,5 @@ This repository contains the technical documentation and architectural decision 
 ## Repositories
 | Repository         | Link     |
 | ------------------- | ---------- |
-| Cakelet Server - Multi-protocol Application Server powering the Cakelet platform.   | [view](https://github.com/Ismael-Romero/cakelet-server)|
+| Cakelet Server - Multi-protocol Application Server built with Go.  | [view](https://github.com/Ismael-Romero/cakelet-server)|
 | Cakelet Desktop - Cross-platform desktop application built with Tauri and React.    | [view](https://github.com/Ismael-Romero/cakelet-desktop)|
