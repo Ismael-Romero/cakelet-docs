@@ -37,7 +37,7 @@ The primary goal is to avoid starting every application from a blank page.
 Instead of repeatedly defining the architecture, project structure, and technical conventions,
 Cakelet provides a pre-designed and validated foundation on which business logic can be built.
 
-The chosen architectural style is a **Modular Monolith**, whose motivations and design 
+The chosen architectural style is a **Client-Server**, whose motivations and design 
 decisions are documented in the Architecture section.
 
 
